@@ -25,17 +25,21 @@
 
 package org.geysermc.geyser.api.extension;
 
+import org.checkerframework.checker.nullness.qual.NonNull;
+
 import java.util.List;
 
 /**
  * This is the Geyser extension description
  */
 public interface ExtensionDescription {
+
     /**
      * Gets the extension's name
      *
      * @return the extension's name
      */
+    @NonNull
     String name();
 
     /**
@@ -43,6 +47,7 @@ public interface ExtensionDescription {
      *
      * @return the extension's main class
      */
+    @NonNull
     String main();
 
     /**
@@ -50,6 +55,7 @@ public interface ExtensionDescription {
      *
      * @return the extension's api version
      */
+    @NonNull
     String apiVersion();
 
     /**
@@ -57,6 +63,7 @@ public interface ExtensionDescription {
      *
      * @return the extension's description
      */
+    @NonNull
     String version();
 
     /**
@@ -64,5 +71,6 @@ public interface ExtensionDescription {
      *
      * @return the extension's authors
      */
+    @NonNull
     List<String> authors();
 }
