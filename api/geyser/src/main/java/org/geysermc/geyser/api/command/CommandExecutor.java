@@ -23,13 +23,22 @@
  * @link https://github.com/GeyserMC/Geyser
  */
 
-package org.geysermc.geyser.api.connection;
-
-import org.geysermc.api.connection.Connection;
-import org.geysermc.geyser.api.command.CommandSource;
+package org.geysermc.geyser.api.command;
 
 /**
- * Represents a player connection used in Geyser.
+ * Handles executing a command.
+ *
+ * @param <T> the command source
  */
-public interface GeyserConnection extends Connection, CommandSource {
+public interface CommandExecutor<T extends CommandSource> {
+
+    /**
+     * Executes the given {@link Command} with the given
+     * {@link CommandSource}.
+     *
+     * @param source the command source
+     * @param command the command
+     * @param args the arguments
+     */
+    void execute(T source, Command command, String[] args);
 }

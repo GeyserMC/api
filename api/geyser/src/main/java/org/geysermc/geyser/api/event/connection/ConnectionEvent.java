@@ -23,13 +23,25 @@
  * @link https://github.com/GeyserMC/Geyser
  */
 
-package org.geysermc.geyser.api.connection;
+package org.geysermc.geyser.api.event.connection;
 
-import org.geysermc.api.connection.Connection;
-import org.geysermc.geyser.api.command.CommandSource;
+import lombok.RequiredArgsConstructor;
+import org.geysermc.geyser.api.connection.GeyserConnection;
+import org.geysermc.geyser.api.event.Event;
 
 /**
- * Represents a player connection used in Geyser.
+ * An event that contains a {@link GeyserConnection}.
  */
-public interface GeyserConnection extends Connection, CommandSource {
+@RequiredArgsConstructor
+public abstract class ConnectionEvent implements Event {
+    private final GeyserConnection connection;
+
+    /**
+     * Gets the {@link GeyserConnection}.
+     *
+     * @return the connection
+     */
+    public GeyserConnection connection() {
+        return this.connection;
+    }
 }

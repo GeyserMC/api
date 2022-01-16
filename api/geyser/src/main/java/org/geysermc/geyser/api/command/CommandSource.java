@@ -23,13 +23,57 @@
  * @link https://github.com/GeyserMC/Geyser
  */
 
-package org.geysermc.geyser.api.connection;
-
-import org.geysermc.api.connection.Connection;
-import org.geysermc.geyser.api.command.CommandSource;
+package org.geysermc.geyser.api.command;
 
 /**
- * Represents a player connection used in Geyser.
+ * Represents an instance capable of sending commands.
  */
-public interface GeyserConnection extends Connection, CommandSource {
+public interface CommandSource {
+
+    /**
+     * The name of the command source.
+     *
+     * @return the name of the command source
+     */
+    String name();
+
+    /**
+     * Sends the given message to the command source
+     *
+     * @param message the message to send
+     */
+    void sendMessage(String message);
+
+    /**
+     * Sends the given messages to the command source
+     *
+     * @param messages the messages to send
+     */
+    default void sendMessage(String[] messages) {
+        for (String message : messages) {
+            sendMessage(message);
+        }
+    }
+
+    /**
+     * If this source is the console.
+     *
+     * @return true if  this source is the console
+     */
+    boolean isConsole();
+
+    /**
+     * Returns the locale of the command source.
+     *
+     * @return the locale of the command source.
+     */
+    String locale();
+
+    /**
+     * Checks if this command source has the given permission
+     *
+     * @param permission The permission node to check
+     * @return true if this command source has a permission
+     */
+    boolean hasPermission(String permission);
 }

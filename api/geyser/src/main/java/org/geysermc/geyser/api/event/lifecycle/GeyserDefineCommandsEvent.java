@@ -23,13 +23,20 @@
  * @link https://github.com/GeyserMC/Geyser
  */
 
-package org.geysermc.geyser.api.connection;
+package org.geysermc.geyser.api.event.lifecycle;
 
-import org.geysermc.api.connection.Connection;
-import org.geysermc.geyser.api.command.CommandSource;
+import org.geysermc.geyser.api.command.Command;
+import org.geysermc.geyser.api.command.CommandManager;
+import org.geysermc.geyser.api.event.Event;
+
+import java.util.Map;
 
 /**
- * Represents a player connection used in Geyser.
+ * Called when commands are defined within Geyser.
+ *
+ * @param commandManager the command manager
+ * @param commands a mutable list of the currently
+ *                 registered default commands
  */
-public interface GeyserConnection extends Connection, CommandSource {
+public record GeyserDefineCommandsEvent(CommandManager commandManager, Map<String, Command> commands) implements Event {
 }

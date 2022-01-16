@@ -23,13 +23,45 @@
  * @link https://github.com/GeyserMC/Geyser
  */
 
-package org.geysermc.geyser.api.connection;
+package org.geysermc.geyser.api.command;
 
-import org.geysermc.api.connection.Connection;
-import org.geysermc.geyser.api.command.CommandSource;
+import org.checkerframework.checker.nullness.qual.NonNull;
+
+import java.util.Map;
 
 /**
- * Represents a player connection used in Geyser.
+ * Manages Bedrock commands within Geyser.
  */
-public interface GeyserConnection extends Connection, CommandSource {
+public abstract class CommandManager {
+
+    /**
+     * Provides a {@link Command.Builder}.
+     *
+     * @param sourceType the command source type
+     * @param <T> the type
+     * @return a command builder
+     */
+    protected abstract <T extends CommandSource> Command.Builder<T> provideBuilder(Class<T> sourceType);
+
+    /**
+     * Registers the given {@link Command}.
+     *
+     * @param command the command to register
+     */
+    public abstract void register(@NonNull Command command);
+
+    /**
+     * Unregisters the given {@link Command}.
+     *
+     * @param command the command to unregister
+     */
+    public abstract void unregister(@NonNull Command command);
+
+    /**
+     * Gets all the registered {@link Command}s.
+     *
+     * @return all the registered commands
+     */
+    @NonNull
+    public abstract Map<String, Command> commands();
 }
