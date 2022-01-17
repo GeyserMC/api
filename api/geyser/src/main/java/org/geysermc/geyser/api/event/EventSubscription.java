@@ -28,8 +28,6 @@ package org.geysermc.geyser.api.event;
 import org.checkerframework.checker.nullness.qual.NonNull;
 import org.geysermc.geyser.api.extension.Extension;
 
-import java.util.function.Consumer;
-
 /**
  * Represents a subscribed listener to a {@link Event}. Wraps around
  * the event and is capable of unsubscribing from the event or give
@@ -46,15 +44,6 @@ public interface EventSubscription<T extends Event> {
      */
     @NonNull
     Class<T> eventClass();
-
-    /**
-     * Gets the consumer responsible for handling
-     * this event.
-     *
-     * @return the consumer responsible for this event
-     */
-    @NonNull
-    Consumer<? super T> eventConsumer();
 
     /**
      * Gets the {@link Extension} that owns this
