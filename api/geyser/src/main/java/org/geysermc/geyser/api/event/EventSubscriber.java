@@ -25,22 +25,16 @@
 
 package org.geysermc.geyser.api.event;
 
+import org.geysermc.event.Event;
+import org.geysermc.event.subscribe.OwnedSubscriber;
+import org.geysermc.geyser.api.extension.Extension;
+
 /**
- * Represents a cancellable event.
+ * Represents a subscribed listener to a {@link Event}. Wraps around
+ * the event and is capable of unsubscribing from the event or give
+ * information about it.
+ *
+ * @param <T> the class of the event
  */
-public interface Cancellable {
-
-    /**
-     * Gets if the event is cancelled.
-     *
-     * @return if the event is cancelled
-     */
-    boolean isCancelled();
-
-    /**
-     * Cancels the event.
-     *
-     * @param cancelled if the event is cancelled
-     */
-    void setCancelled(boolean cancelled);
+public interface EventSubscriber<T extends Event> extends OwnedSubscriber<Extension, T> {
 }
