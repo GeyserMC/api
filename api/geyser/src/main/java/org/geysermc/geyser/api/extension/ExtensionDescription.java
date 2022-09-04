@@ -30,12 +30,20 @@ import org.checkerframework.checker.nullness.qual.NonNull;
 import java.util.List;
 
 /**
- * This is the Geyser extension description
+ * Represents the description of an {@link Extension}.
  */
 public interface ExtensionDescription {
 
     /**
-     * Gets the extension's name
+     * Gets the extension's id.
+     *
+     * @return the extension's id
+     */
+    @NonNull
+    String id();
+
+    /**
+     * Gets the extension's name.
      *
      * @return the extension's name
      */
@@ -43,7 +51,7 @@ public interface ExtensionDescription {
     String name();
 
     /**
-     * Gets the extension's main class
+     * Gets the extension's main class.
      *
      * @return the extension's main class
      */
@@ -51,7 +59,7 @@ public interface ExtensionDescription {
     String main();
 
     /**
-     * Gets the extension's api version
+     * Gets the extension's api version.
      *
      * @return the extension's api version
      */
@@ -59,7 +67,7 @@ public interface ExtensionDescription {
     String apiVersion();
 
     /**
-     * Gets the extension's description
+     * Gets the extension's description.
      *
      * @return the extension's description
      */
@@ -67,7 +75,7 @@ public interface ExtensionDescription {
     String version();
 
     /**
-     * Gets the extension's authors
+     * Gets the extension's authors.
      *
      * @return the extension's authors
      */

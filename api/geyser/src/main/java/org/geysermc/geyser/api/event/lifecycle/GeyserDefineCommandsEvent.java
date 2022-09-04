@@ -23,36 +23,35 @@
  * @link https://github.com/GeyserMC/Geyser
  */
 
-package org.geysermc.geyser.api.command;
+package org.geysermc.geyser.api.event.lifecycle;
 
 import org.checkerframework.checker.nullness.qual.NonNull;
+import org.geysermc.event.Event;
+import org.geysermc.geyser.api.command.Command;
 
 import java.util.Map;
 
 /**
- * Manages Bedrock commands within Geyser.
+ * Called when commands are defined within Geyser.
+ *
+ * This event allows you to register new commands using the {@link #register(Command)}
+ * method and retrieve the default commands defined.
  */
-public abstract class CommandManager {
+public interface GeyserDefineCommandsEvent extends Event {
 
     /**
-     * Registers the given {@link Command}.
+     * Registers the given {@link Command} into the Geyser
+     * command manager.
      *
      * @param command the command to register
      */
-    public abstract void register(@NonNull Command command);
+    void register(@NonNull Command command);
 
     /**
-     * Unregisters the given {@link Command}.
+     * Gets all the registered built-in {@link Command}s.
      *
-     * @param command the command to unregister
-     */
-    public abstract void unregister(@NonNull Command command);
-
-    /**
-     * Gets all the registered {@link Command}s.
-     *
-     * @return all the registered commands
+     * @return all the registered built-in commands
      */
     @NonNull
-    public abstract Map<String, Command> commands();
+    Map<String, Command> commands();
 }
