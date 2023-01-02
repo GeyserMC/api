@@ -1,14 +1,10 @@
-plugins {
-    id("geyser.api-conventions")
-}
-
 dependencies {
-    api(projects.api)
+    api(projects.base)
 }
 
-publishing {
-    publications.named<MavenPublication>("mavenJava") {
-        groupId = rootProject.group as String + ".geyser"
-        artifactId = "api"
-    }
-}
+//publishing {
+//    publications.named<MavenPublication>("mavenJava") {
+//        groupId = rootProject.group as String + ".geyser"
+//        artifactId = "api"
+//    }
+//}
