@@ -1,17 +1,15 @@
+plugins {
+    id("api.build-logic")
+}
+
 allprojects {
-    group = "org.geysermc"
-    version = "2.1.0-SNAPSHOT"
-    description = "Allows for players from Minecraft: Bedrock Edition to join Minecraft: Java Edition servers."
+    group = "org.geysermc.api"
 
     tasks.withType<JavaCompile> {
         options.encoding = "UTF-8"
     }
-
-    apply {
-        plugin("java-library")
-    }
 }
 
 subprojects {
-//    plugins.apply("geyser.api-conventions")
+    apply(plugin = "api.publish-conventions")
 }

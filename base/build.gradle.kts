@@ -6,3 +6,5 @@ dependencies {
         exclude(group = "org.lanternpowered", module = "lmbda")
     }
 }
+
+version = property("baseApiVersion")!!
