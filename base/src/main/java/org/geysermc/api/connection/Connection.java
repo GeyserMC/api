@@ -34,6 +34,7 @@ import org.geysermc.api.util.UiProfile;
 import org.geysermc.cumulus.form.Form;
 import org.geysermc.cumulus.form.util.FormBuilder;
 
+import java.net.InetSocketAddress;
 import java.util.UUID;
 
 /**
@@ -118,4 +119,9 @@ public interface Connection {
      * @return true if the transfer was a success
      */
     boolean transfer(@NonNull String address, @IntRange(from = 0, to = 65535) int port);
+
+    /**
+     * Returns the socket address of the connection.
+     */
+    @NonNull InetSocketAddress socketAddress();
 }
