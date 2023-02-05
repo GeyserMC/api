@@ -20,13 +20,6 @@ pipeline {
         }
 
         stage ('Deploy') {
-            when {
-                anyOf {
-                    branch "master"
-                    branch "development"
-                }
-            }
-
             steps {
                 rtGradleDeployer(
                         id: "GRADLE_DEPLOYER",

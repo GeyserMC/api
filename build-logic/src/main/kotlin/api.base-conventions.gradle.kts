@@ -1,14 +1,15 @@
 plugins {
     `java-library`
+    id("net.kyori.indra")
 }
 
-tasks.compileJava {
-    options.encoding = Charsets.UTF_8.name()
-}
+indra {
+    github("GeyserMC", "api") {
+        ci(true)
+    }
+    mitLicense()
 
-java {
-    sourceCompatibility = JavaVersion.VERSION_1_8
-    targetCompatibility = JavaVersion.VERSION_1_8
-
-    withSourcesJar()
+    javaVersions {
+        target(8)
+    }
 }

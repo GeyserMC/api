@@ -1,5 +1,6 @@
 plugins {
     id("api.base-conventions")
+    id("net.kyori.indra.git")
     id("com.jfrog.artifactory")
     id("maven-publish")
 }
@@ -13,9 +14,18 @@ publishing {
     }
 }
 
-// without afterEvaluate isSnapshot would always return false
+// we need to execute this in afterEvaluate,
 // because the version wouldn't have been set yet
+// (used in isSnapshot as well)
 afterEvaluate {
+    if (shouldAddBranchName()) {
+        publishing.publications {
+            getByName<MavenPublication>("mavenJava") {
+                version = versionWithBranchName()
+            }
+        }
+    }
+
     artifactory {
         setContextUrl("https://repo.opencollab.dev/artifactory")
         publish {
