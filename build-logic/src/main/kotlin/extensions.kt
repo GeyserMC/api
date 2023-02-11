@@ -6,7 +6,7 @@ fun Project.isSnapshot(): Boolean =
     version.toString().endsWith("-SNAPSHOT")
 
 fun Project.branchName(): String =
-    the<IndraGitExtension>().branchName() ?: System.getenv("GIT_BRANCH") ?: "local/dev"
+    the<IndraGitExtension>().branchName() ?: System.getenv("BRANCH_NAME") ?: "local/dev"
 
 fun Project.shouldAddBranchName(): Boolean =
     System.getenv("IGNORE_BRANCH")?.toBoolean() ?: (branchName() !in arrayOf("master", "local/dev"))
