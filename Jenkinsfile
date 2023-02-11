@@ -8,42 +8,9 @@ pipeline {
         buildDiscarder(logRotator(artifactNumToKeepStr: '5'))
     }
     stages {
-        stage ('Build') {
+        stage ('Build and Publish') {
             steps {
-                rtGradleRun(
-                    usesPlugin: true,
-                    tool: 'Gradle 7',
-                    buildFile: 'build.gradle.kts',
-                    tasks: 'clean build',
-                )
-            }
-        }
-
-        stage ('Deploy') {
-            steps {
-                rtGradleDeployer(
-                        id: "GRADLE_DEPLOYER",
-                        serverId: "opencollab-artifactory",
-                        releaseRepo: "maven-releases",
-                        snapshotRepo: "maven-snapshots"
-                )
-                rtGradleResolver(
-                        id: "GRADLE_RESOLVER",
-                        serverId: "opencollab-artifactory"
-                )
-                rtGradleRun(
-                        usesPlugin: true,
-                        tool: 'Gradle 7',
-                        rootDir: "",
-                        useWrapper: true,
-                        buildFile: 'build.gradle.kts',
-                        tasks: 'artifactoryPublish',
-                        deployerId: "GRADLE_DEPLOYER",
-                        resolverId: "GRADLE_RESOLVER"
-                )
-                rtPublishBuildInfo(
-                        serverId: "opencollab-artifactory"
-                )
+                sh './gradlew clean publish'
             }
         }
     }

@@ -7,5 +7,5 @@ allprojects {
 }
 
 subprojects {
-    apply(plugin = "api.publish-conventions")
+    apply(plugin = "api.base-conventions")
 }
