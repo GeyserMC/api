@@ -15,7 +15,7 @@ jobs:
     steps:
       - name: Get Release Info
         id: release-info
-        uses: GeyserMC/actions/previous-release@feature/globs
+        uses: GeyserMC/actions/previous-release@master
         with:
           data: ${{ vars.RELEASEACTION_PREVRELEASE }}
 
@@ -28,7 +28,7 @@ jobs:
         run: ./gradlew build
 
       - name: Publish to Maven Repository
-        if: ${{ success() && github.repository == 'GeyserMC/api' && github.ref_name == 'master' }}
+        if: ${{ success() && github.repository == 'GeyserMC/api'}}
         run: ./gradlew publish
         env:
           ORG_GRADLE_PROJECT_geysermcUsername: ${{ vars.DEPLOY_USER }}
