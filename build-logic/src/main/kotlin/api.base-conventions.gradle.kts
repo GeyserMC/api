@@ -22,7 +22,6 @@ indra {
         }
     }
 
-    val repoUrl = "https://repo.opencollab.dev/artifactory"
-    publishSnapshotsTo("maven-snapshots", repoUrl)
-    publishReleasesTo("maven-releases", repoUrl)
+    publishSnapshotsTo("opencollab-artifactory", "https://repo.opencollab.dev/artifactory/maven-snapshots")
+    publishReleasesTo("opencollab-artifactory", "https://repo.opencollab.dev/artifactory/maven-releases")
 }
