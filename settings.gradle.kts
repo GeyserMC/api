@@ -22,4 +22,4 @@ pluginManagement {
 
 rootProject.name = "api-parent"
 
-include(":base", ":geyser")
+include(":base")
