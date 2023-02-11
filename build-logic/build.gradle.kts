@@ -9,7 +9,8 @@ repositories {
 }
 
 dependencies {
-    implementation("org.jfrog.buildinfo", "build-info-extractor-gradle", "4.26.1")
+    implementation("net.kyori", "indra-common", "3.0.1")
+    implementation("net.kyori", "indra-git", "3.0.1")
 }
 
 tasks.withType<KotlinCompile> {

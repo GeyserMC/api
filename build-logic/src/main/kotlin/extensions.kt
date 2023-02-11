@@ -2,9 +2,6 @@ import net.kyori.indra.git.IndraGitExtension
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.the
 
-fun Project.isSnapshot(): Boolean =
-    version.toString().endsWith("-SNAPSHOT")
-
 fun Project.branchName(): String =
     the<IndraGitExtension>().branchName() ?: System.getenv("BRANCH_NAME") ?: "local/dev"
 

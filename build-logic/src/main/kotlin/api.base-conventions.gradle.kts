@@ -1,14 +1,28 @@
 plugins {
     `java-library`
+    id("net.kyori.indra")
+    id("net.kyori.indra.publishing")
+    id("net.kyori.indra.git")
 }
 
-tasks.compileJava {
-    options.encoding = Charsets.UTF_8.name()
-}
+indra {
+    github("GeyserMC", "api") {
+        ci(true)
+    }
+    mitLicense()
 
-java {
-    sourceCompatibility = JavaVersion.VERSION_1_8
-    targetCompatibility = JavaVersion.VERSION_1_8
+    javaVersions {
+        target(8)
+    }
 
-    withSourcesJar()
+    configurePublications {
+        artifactId = "${project.name}-api"
+        if (shouldAddBranchName()) {
+            version = versionWithBranchName()
+        }
+    }
+
+    val repoUrl = "https://repo.opencollab.dev/artifactory"
+    publishSnapshotsTo("maven-snapshots", repoUrl)
+    publishReleasesTo("maven-releases", repoUrl)
 }
