@@ -22,6 +22,6 @@ indra {
         }
     }
 
-    publishSnapshotsTo("geysermc", "https://repo.opencollab.dev/snapshots")
-    publishReleasesTo("geysermc", "https://repo.opencollab.dev/releases")
+    publishSnapshotsTo("geysermc", "https://repo.opencollab.dev/artifactory/maven-snapshots")
+    publishReleasesTo("geysermc", "https://repo.opencollab.dev/artifactory/maven-releases")
 }
