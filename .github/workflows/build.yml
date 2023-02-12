@@ -21,7 +21,7 @@ jobs:
       - name: Publish
         uses: gradle/gradle-build-action@v2
         env:
-          ORG_GRADLE_PROJECT_geysermcUsername: "${{ secrets.DEPLOY_USER }}"
+          ORG_GRADLE_PROJECT_geysermcUsername: "${{ vars.DEPLOY_USER }}"
           ORG_GRADLE_PROJECT_geysermcPassword: "${{ secrets.DEPLOY_PASS }}"
         with:
           arguments: publish
