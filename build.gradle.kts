@@ -1,15 +1,11 @@
 plugins {
-    id("api.build-logic")
+  id("api.build-logic")
 }
 
 allprojects {
-    group = "org.geysermc.api"
-
-    tasks.withType<JavaCompile> {
-        options.encoding = "UTF-8"
-    }
+  group = "org.geysermc.api"
 }
 
 subprojects {
-    apply(plugin = "api.base-conventions")
+  apply(plugin = "api.base-conventions")
 }
