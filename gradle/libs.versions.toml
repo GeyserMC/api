@@ -2,8 +2,12 @@
 checkerframework = "3.19.0"
 cumulus  = "1.1.1"
 events = "1.0-SNAPSHOT"
+indra = "3.0.1"
 
 [libraries]
-checkerQual = { group = "org.checkerframework", name = "checker-qual", version.ref = "checkerframework" }
+checker-qual = { group = "org.checkerframework", name = "checker-qual", version.ref = "checkerframework" }
 cumulus = { group = "org.geysermc.cumulus", name = "cumulus", version.ref = "cumulus" }
 events = { group = "org.geysermc.event", name = "events", version.ref = "events" }
+
+plugin-indra = { group = "net.kyori", name = "indra-common", version.ref = "indra" }
+plugin-indra-git = { group = "net.kyori", name = "indra-git", version.ref = "indra" }
