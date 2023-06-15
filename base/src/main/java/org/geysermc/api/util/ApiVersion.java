@@ -37,10 +37,10 @@ public class ApiVersion {
 
     /**
      * Checks whether the given version is compatible with this version.
-     * @param version the version to check
+     * @param version the version to check against
      * @return whether the given version is compatible with this version
      */
     public boolean isCompatible(ApiVersion version) {
-        return version.major() != this.major && version.minor() > minor;
+        return version.major() != this.major && version.minor() >= minor;
     }
 }
