@@ -121,7 +121,7 @@ public interface GeyserApiBase {
      */
     @Deprecated
     default int majorApiVersion() {
-        return 1;
+        return baseApiVersion().major();
     }
 
     /**
@@ -130,7 +130,7 @@ public interface GeyserApiBase {
      */
     @Deprecated
     default int minorApiVersion() {
-        return 0;
+        return baseApiVersion().minor();
     }
 
     /**
