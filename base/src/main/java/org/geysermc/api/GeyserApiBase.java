@@ -30,6 +30,7 @@ import org.checkerframework.checker.nullness.qual.NonNull;
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.checkerframework.common.value.qual.IntRange;
 import org.geysermc.api.connection.Connection;
+import org.geysermc.api.util.ApiVersion;
 import org.geysermc.cumulus.form.Form;
 import org.geysermc.cumulus.form.util.FormBuilder;
 
@@ -116,15 +117,27 @@ public interface GeyserApiBase {
 
     /**
      * Returns the major API version. Bumped whenever a significant breaking change or feature addition is added.
+     * Deprecated in favor of {@link #baseApiVersion()}.
      */
+    @Deprecated
     default int majorApiVersion() {
         return 1;
     }
 
     /**
      * Returns the minor API version. May be bumped for new API additions.
+     * Deprecated in favor of {@link #baseApiVersion()}.
      */
+    @Deprecated
     default int minorApiVersion() {
         return 0;
+    }
+
+    /**
+     * Returns the Base API version.
+     * @return {@link ApiVersion}
+     */
+    default ApiVersion baseApiVersion() {
+        return new ApiVersion(1 ,0 ,0);
     }
 }
