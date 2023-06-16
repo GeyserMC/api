@@ -117,6 +117,7 @@ public interface GeyserApiBase {
 
     /**
      * Returns the major API version. Bumped whenever a significant breaking change or feature addition is added.
+     *
      * @deprecated in favor of {@link #baseApiVersion()}.
      */
     @Deprecated
@@ -126,6 +127,7 @@ public interface GeyserApiBase {
 
     /**
      * Returns the minor API version. May be bumped for new API additions.
+     *
      * @deprecated in favor of {@link #baseApiVersion()}.
      */
     @Deprecated
@@ -135,6 +137,7 @@ public interface GeyserApiBase {
 
     /**
      * Returns the Base API version.
+     *
      * @return {@link ApiVersion}
      */
     default ApiVersion baseApiVersion() {

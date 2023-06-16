@@ -1,5 +1,8 @@
 package org.geysermc.api.util;
 
+/**
+ * Represents a version of the api.
+ */
 public class ApiVersion {
     private final int major;
     private final int minor;
@@ -13,6 +16,7 @@ public class ApiVersion {
 
     /**
      * Returns the major version of the api.
+     *
      * @return the major version
      */
     public int major() {
@@ -21,6 +25,7 @@ public class ApiVersion {
 
     /**
      * Returns the minor version of the api.
+     *
      * @return the minor version
      */
     public int minor() {
@@ -29,6 +34,7 @@ public class ApiVersion {
 
     /**
      * Returns the patch version of the api.
+     *
      * @return the patch version
      */
     public int patch() {
@@ -37,6 +43,7 @@ public class ApiVersion {
 
     /**
      * Checks whether the given version is compatible with this version.
+     *
      * @param version the version to check against
      * @return whether the given version is compatible with this version
      */
