@@ -43,11 +43,13 @@ public class ApiVersion {
 
     /**
      * Checks whether the given version is compatible with this version.
+     * The parameters show the desired API version, that is checked against the API version present.
      *
-     * @param version the version to check against
-     * @return whether the given version is compatible with this version
+     * @param major the major version to check against
+     * @param minor the minor version to check against
+     * @return whether the desired API version is compatible with the present API version
      */
-    public boolean isCompatible(ApiVersion version) {
-        return version.major() != this.major && version.minor() >= minor;
+    public boolean isCompatible(int major, int minor) {
+        return major == this.major && minor <= this.minor;
     }
 }
