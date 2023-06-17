@@ -47,9 +47,10 @@ public class ApiVersion {
      *
      * @param major the major version to check against
      * @param minor the minor version to check against
+     * @param patch the patch version to check against
      * @return whether the desired API version is compatible with the present API version
      */
-    public boolean isCompatible(int major, int minor) {
-        return major == this.major && minor <= this.minor;
+    public boolean isCompatible(int major, int minor, int patch) {
+        return major == this.major && minor <= this.minor && patch <= this.patch;
     }
 }
