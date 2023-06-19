@@ -141,6 +141,6 @@ public interface GeyserApiBase {
      * @return {@link ApiVersion}
      */
     default ApiVersion baseApiVersion() {
-        return new ApiVersion(1, 0, 0);
+        return new ApiVersion(1, 0, 1);
     }
 }
