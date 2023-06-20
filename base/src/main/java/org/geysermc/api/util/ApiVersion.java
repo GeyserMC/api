@@ -45,7 +45,7 @@ public class ApiVersion {
      * Checks whether the given version is compatible with this version.
      * The parameters show the desired API version, that is checked against the API version present.
      * Major version must match, desired minor must be equal or smaller, same for patch.
-     * Patch version is ignored if the minor version is smaller than the desired minor version.
+     * Patch version is ignored if the desired minor version is smaller than this minor version.
      *
      * @param major the major version to check against
      * @param minor the minor version to check against
