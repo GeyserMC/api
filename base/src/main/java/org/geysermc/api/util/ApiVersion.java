@@ -43,14 +43,14 @@ public class ApiVersion {
 
     /**
      * Checks whether the given version is compatible with this version.
-     * The parameters show the desired API version, that is checked against the API version present.
-     * Major version must match, desired minor must be equal or smaller, same for patch.
-     * Patch version is ignored if the desired minor version is smaller than this minor version.
+     * The parameters show the desired API version, which is checked against this present API version.
+     * The major versions must match, and the desired minor version must be equal or smaller than this minor version.
+     * If the minor versions match, then the desired patch version must be equal or smaller than this patch version.
      *
-     * @param major the major version to check against
-     * @param minor the minor version to check against
-     * @param patch the patch version to check against
-     * @return whether the desired API version is compatible with the present API version
+     * @param major the desired major version
+     * @param minor the desired minor version
+     * @param patch the desired patch version
+     * @return true if the desired API version is compatible with the present API version
      */
     public boolean isCompatible(int major, int minor, int patch) {
         return major == this.major
