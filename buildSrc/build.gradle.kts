@@ -9,4 +9,5 @@ repositories {
 dependencies {
   implementation(libs.plugin.indra)
   implementation(libs.plugin.indra.git)
+  implementation(libs.plugin.indra.licenser.spotless)
 }

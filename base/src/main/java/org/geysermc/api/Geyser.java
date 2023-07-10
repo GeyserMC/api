@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019-2022 GeyserMC. http://geysermc.org
+ * Copyright (c) 2021-2023 GeyserMC
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,9 +20,8 @@
  * THE SOFTWARE.
  *
  * @author GeyserMC
- * @link https://github.com/GeyserMC/Geyser
+ * @link https://github.com/GeyserMC/api
  */
-
 package org.geysermc.api;
 
 import org.checkerframework.checker.nullness.qual.NonNull;
@@ -30,7 +29,6 @@ import org.checkerframework.checker.nullness.qual.NonNull;
 /**
  * General API class for Geyser.
  */
-@NonNull
 public class Geyser {
     private static GeyserApiBase api;
 
@@ -39,8 +37,7 @@ public class Geyser {
      *
      * @return the base api
      */
-    @NonNull
-    public static GeyserApiBase api() {
+    public static @NonNull GeyserApiBase api() {
         if (api == null) {
             throw new RuntimeException("Api has not been registered yet!");
         }
@@ -64,7 +61,8 @@ public class Geyser {
         if (api == null) {
             throw new RuntimeException("Api has not been registered yet!");
         } else {
-            throw new RuntimeException("Api was not an instance of " + apiClass + "! Was " + api.getClass().getCanonicalName());
+            throw new RuntimeException("Api was not an instance of " + apiClass + "! Was "
+                    + api.getClass().getCanonicalName());
         }
     }
 

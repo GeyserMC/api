@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019-2022 GeyserMC. http://geysermc.org
+ * Copyright (c) 2021-2023 GeyserMC
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,11 +20,12 @@
  * THE SOFTWARE.
  *
  * @author GeyserMC
- * @link https://github.com/GeyserMC/Geyser
+ * @link https://github.com/GeyserMC/api
  */
-
 package org.geysermc.api;
 
+import java.util.List;
+import java.util.UUID;
 import org.checkerframework.checker.nullness.qual.MonotonicNonNull;
 import org.checkerframework.checker.nullness.qual.NonNull;
 import org.checkerframework.checker.nullness.qual.Nullable;
@@ -32,9 +33,6 @@ import org.checkerframework.common.value.qual.IntRange;
 import org.geysermc.api.connection.Connection;
 import org.geysermc.cumulus.form.Form;
 import org.geysermc.cumulus.form.util.FormBuilder;
-
-import java.util.List;
-import java.util.UUID;
 
 /**
  * The base API class.
@@ -47,8 +45,7 @@ public interface GeyserApiBase {
      * @param uuid the UUID of the connection
      * @return the connection from the given UUID, if applicable
      */
-    @Nullable
-    Connection connectionByUuid(@NonNull UUID uuid);
+    @Nullable Connection connectionByUuid(@NonNull UUID uuid);
 
     /**
      * Gets the connection from the given XUID, if applicable. This method only works for online connections.
@@ -56,8 +53,7 @@ public interface GeyserApiBase {
      * @param xuid the XUID of the session
      * @return the connection from the given UUID, if applicable
      */
-    @Nullable
-    Connection connectionByXuid(@NonNull String xuid);
+    @Nullable Connection connectionByXuid(@NonNull String xuid);
 
     /**
      * Method to determine if the given <b>online</b> player is a Bedrock player.
@@ -96,12 +92,10 @@ public interface GeyserApiBase {
      */
     boolean transfer(@NonNull UUID uuid, @NonNull String address, @IntRange(from = 0, to = 65535) int port);
 
-
     /**
      * Returns all the online connections.
      */
-    @NonNull
-    List<? extends Connection> onlineConnections();
+    @NonNull List<? extends Connection> onlineConnections();
 
     /**
      * Returns the amount of online connections.
@@ -111,8 +105,7 @@ public interface GeyserApiBase {
     /**
      * Returns the prefix used by Floodgate. Will be null when the auth-type isn't Floodgate.
      */
-    @MonotonicNonNull
-    String usernamePrefix();
+    @MonotonicNonNull String usernamePrefix();
 
     /**
      * Returns the major API version. Bumped whenever a significant breaking change or feature addition is added.

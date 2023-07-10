@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019-2022 GeyserMC. http://geysermc.org
+ * Copyright (c) 2021-2023 GeyserMC
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,11 +20,11 @@
  * THE SOFTWARE.
  *
  * @author GeyserMC
- * @link https://github.com/GeyserMC/Geyser
+ * @link https://github.com/GeyserMC/api
  */
-
 package org.geysermc.api.connection;
 
+import java.util.UUID;
 import org.checkerframework.checker.nullness.qual.MonotonicNonNull;
 import org.checkerframework.checker.nullness.qual.NonNull;
 import org.checkerframework.common.value.qual.IntRange;
@@ -33,9 +33,6 @@ import org.geysermc.api.util.InputMode;
 import org.geysermc.api.util.UiProfile;
 import org.geysermc.cumulus.form.Form;
 import org.geysermc.cumulus.form.util.FormBuilder;
-
-import java.net.InetSocketAddress;
-import java.util.UUID;
 
 /**
  * Represents a player connection.
@@ -49,14 +46,12 @@ public interface Connection {
     /**
      * Returns the java name of the connection.
      */
-    @MonotonicNonNull
-    String javaUsername();
+    @MonotonicNonNull String javaUsername();
 
     /**
      * Returns the UUID of the connection.
      */
-    @MonotonicNonNull
-    UUID javaUuid();
+    @MonotonicNonNull UUID javaUuid();
 
     /**
      * Returns the XUID of the connection.
@@ -119,9 +114,4 @@ public interface Connection {
      * @return true if the transfer was a success
      */
     boolean transfer(@NonNull String address, @IntRange(from = 0, to = 65535) int port);
-
-    /**
-     * Returns the socket address of the connection.
-     */
-    @NonNull InetSocketAddress socketAddress();
 }
