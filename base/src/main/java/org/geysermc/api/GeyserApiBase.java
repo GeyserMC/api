@@ -116,23 +116,19 @@ public interface GeyserApiBase {
     String usernamePrefix();
 
     /**
-     * Returns the major API version. Bumped whenever a significant breaking change or feature addition is added.
-     *
      * @deprecated in favor of {@link #baseApiVersion()}.
      */
     @Deprecated
     default int majorApiVersion() {
-        return baseApiVersion().major();
+        return baseApiVersion().human();
     }
 
     /**
-     * Returns the minor API version. May be bumped for new API additions.
-     *
      * @deprecated in favor of {@link #baseApiVersion()}.
      */
     @Deprecated
     default int minorApiVersion() {
-        return baseApiVersion().minor();
+        return baseApiVersion().major();
     }
 
     /**
@@ -141,6 +137,6 @@ public interface GeyserApiBase {
      * @return {@link ApiVersion}
      */
     default ApiVersion baseApiVersion() {
-        return new ApiVersion(1, 0, 1);
+        return new ApiVersion(1, 1, 0);
     }
 }

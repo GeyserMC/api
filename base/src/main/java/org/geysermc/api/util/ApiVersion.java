@@ -4,14 +4,23 @@ package org.geysermc.api.util;
  * Represents a version of the api.
  */
 public class ApiVersion {
+    private final int human;
     private final int major;
     private final int minor;
-    private final int patch;
 
-    public ApiVersion(int major, int minor, int patch) {
-        this.major = major;
-        this.minor = minor;
-        this.patch = patch;
+    public ApiVersion(int human, int minor, int patch) {
+        this.human = human;
+        this.major = minor;
+        this.minor = patch;
+    }
+
+    /**
+     * Returns the human version of the api.
+     *
+     * @return the human version
+     */
+    public int human() {
+        return this.human;
     }
 
     /**
@@ -33,28 +42,50 @@ public class ApiVersion {
     }
 
     /**
-     * Returns the patch version of the api.
+     * Checks whether the requested version is compatible with this version.
+     * The parameters represent the desired api version, which is checked against this version.
+     * The human version must match, and the desired major version must be equal or smaller than this major version.
+     * If the major versions match, then the desired minor version must be equal or smaller than this minor version.
      *
-     * @return the patch version
+     * @param human the desired human version
+     * @param major the desired major version
+     * @param minor the desired minor version
+     * @return a {@link Compatibility} indicating whether the versions are compatible
      */
-    public int patch() {
-        return this.patch;
+    public Compatibility supportsRequestedVersion(int human, int major, int minor) {
+        if (human != this.human) {
+            return Compatibility.HUMAN_DIFFER;
+        }
+
+        if (major > this.major) {
+            return Compatibility.MAJOR_TOO_NEW;
+        }
+
+        if (minor > this.minor && major >= this.major) {
+            return Compatibility.MINOR_TOO_NEW;
+        }
+
+        return Compatibility.COMPATIBLE;
     }
 
     /**
-     * Checks whether the given version is compatible with this version.
-     * The parameters show the desired API version, which is checked against this present API version.
-     * The major versions must match, and the desired minor version must be equal or smaller than this minor version.
-     * If the minor versions match, then the desired patch version must be equal or smaller than this patch version.
-     *
-     * @param major the desired major version
-     * @param minor the desired minor version
-     * @param patch the desired patch version
-     * @return true if the desired API version is compatible with the present API version
+     * Used in {@link #supportsRequestedVersion(int, int, int)} to inform users about compatibility levels
+     * between a requested api version and this version.
      */
-    public boolean isCompatible(int major, int minor, int patch) {
-        return major == this.major
-                && minor <= this.minor
-                && (patch <= this.patch || minor < this.minor);
+    public enum Compatibility {
+        COMPATIBLE("The api versions are compatible!"),
+        HUMAN_DIFFER("The human api version does not match!"),
+        MAJOR_TOO_NEW("The major api version is too high!"),
+        MINOR_TOO_NEW("The minor api version is too high!");
+
+        private final String reason;
+
+        Compatibility(String reason) {
+            this.reason = reason;
+        }
+
+        public String cause() {
+            return this.reason;
+        }
     }
 }
