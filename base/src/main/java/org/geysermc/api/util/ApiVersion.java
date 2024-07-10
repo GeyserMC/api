@@ -8,10 +8,10 @@ public class ApiVersion {
     private final int major;
     private final int minor;
 
-    public ApiVersion(int human, int minor, int patch) {
+    public ApiVersion(int human, int major, int minor) {
         this.human = human;
-        this.major = minor;
-        this.minor = patch;
+        this.major = major;
+        this.minor = minor;
     }
 
     /**
