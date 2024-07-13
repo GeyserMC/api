@@ -71,8 +71,7 @@ public class ApiVersion {
     }
 
     /**
-     * Used in {@link #supportsRequestedVersion(int, int, int)} to inform users about compatibility levels
-     * between a requested api version and this version.
+     * Describes compatibility between the current version of an API and a requested version
      */
     public enum Compatibility {
         COMPATIBLE("The api versions are compatible!"),
