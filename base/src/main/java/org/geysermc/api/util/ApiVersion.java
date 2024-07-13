@@ -42,15 +42,17 @@ public class ApiVersion {
     }
 
     /**
-     * Checks whether the requested version is compatible with this version.
-     * The parameters represent the desired api version, which is checked against this version.
-     * The human version must match, and the desired major version must be equal or smaller than this major version.
-     * If the major versions match, then the desired minor version must be equal or smaller than this minor version.
+     * Checks whether an API described by this version has a good likelihood of supporting an API consumer.
+     * <p>
+     * The compatibility is described as follows:
+     * The human version must match.
+     * The requested major version must be equal or smaller than this major version.
+     * If the major versions are equal, the requested minor version must be equal or smaller than this minor version.
      *
-     * @param human the desired human version
-     * @param major the desired major version
-     * @param minor the desired minor version
-     * @return a {@link Compatibility} indicating whether the versions are compatible
+     * @param human the requested human version
+     * @param major the requested major version
+     * @param minor the requested minor version
+     * @return a {@link Compatibility} indicating whether this version may support the requested version
      */
     public Compatibility supportsRequestedVersion(int human, int major, int minor) {
         if (human != this.human) {
