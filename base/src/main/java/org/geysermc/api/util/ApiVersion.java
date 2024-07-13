@@ -76,9 +76,9 @@ public class ApiVersion {
      */
     public enum Compatibility {
         COMPATIBLE("The api versions are compatible!"),
-        HUMAN_DIFFER("The human api version does not match!"),
-        MAJOR_TOO_NEW("The major api version is too high!"),
-        MINOR_TOO_NEW("The minor api version is too high!");
+        HUMAN_DIFFER("The requested human api version does not match!"),
+        MAJOR_TOO_NEW("The requested major api version is too high!"),
+        MINOR_TOO_NEW("The requested minor api version is too high!");
 
         private final String reason;
 
