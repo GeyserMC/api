@@ -133,10 +133,8 @@ public interface GeyserApiBase {
 
     /**
      * Returns the Base API version.
-     *
-     * @return {@link ApiVersion}
      */
     default ApiVersion baseApiVersion() {
-        return new ApiVersion(1, 1, 0);
+        return new ApiVersion(BuildData.VERSION);
     }
 }

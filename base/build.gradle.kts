@@ -1,3 +1,8 @@
+plugins {
+    idea
+    alias(libs.plugins.blossom) apply true
+}
+
 dependencies {
     api(libs.checkerQual)
     api(libs.cumulus)
@@ -8,3 +13,13 @@ dependencies {
 }
 
 version = property("baseApiVersion")!!
+
+sourceSets {
+    main {
+        blossom {
+            javaSources {
+                property("version", version as String)
+            }
+        }
+    }
+}

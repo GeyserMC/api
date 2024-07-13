@@ -1,7 +1,7 @@
 package org.geysermc.api.util;
 
 /**
- * Represents a version of the api.
+ * Represents a version of an api.
  */
 public class ApiVersion {
     private final int human;
@@ -14,10 +14,19 @@ public class ApiVersion {
         this.minor = minor;
     }
 
+    public ApiVersion(String version) {
+        String[] parts = version.split("\\.");
+        if (parts.length != 3) {
+            throw new IllegalArgumentException("Invalid api version: " + version);
+        }
+
+        this.human = Integer.parseInt(parts[0]);
+        this.major = Integer.parseInt(parts[1]);
+        this.minor = Integer.parseInt(parts[2]);
+    }
+
     /**
      * Returns the human version of the api.
-     *
-     * @return the human version
      */
     public int human() {
         return this.human;
@@ -25,8 +34,6 @@ public class ApiVersion {
 
     /**
      * Returns the major version of the api.
-     *
-     * @return the major version
      */
     public int major() {
         return this.major;
@@ -34,8 +41,6 @@ public class ApiVersion {
 
     /**
      * Returns the minor version of the api.
-     *
-     * @return the minor version
      */
     public int minor() {
         return this.minor;
