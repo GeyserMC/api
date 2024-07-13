@@ -23,7 +23,7 @@
  * @link https://github.com/GeyserMC/Geyser
  */
 
-package org.geysermc.api;
+package org.geysermc.api.util;
 
 // This constant is replaced before compilation
 public class BuildData {
