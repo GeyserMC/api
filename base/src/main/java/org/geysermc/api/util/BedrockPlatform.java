@@ -34,15 +34,19 @@ public enum BedrockPlatform {
     OSX("macOS"),
     AMAZON("Amazon"),
     GEARVR("Gear VR"),
-    HOLOLENS("Hololens"),
+    @Deprecated HOLOLENS("Hololens"),
     UWP("Windows"),
     WIN32("Windows x86"),
     DEDICATED("Dedicated"),
-    TVOS("Apple TV"),
-    PS4("PS4"),
+    @Deprecated TVOS("Apple TV"),
+    /**
+     * This is for all PlayStation platforms not just PS4
+     */
+    PS4("PlayStation"),
     NX("Switch"),
-    XBOX("Xbox One"),
-    WINDOWS_PHONE("Windows Phone");
+    XBOX("Xbox"),
+    @Deprecated WINDOWS_PHONE("Windows Phone"),
+    LINUX("Linux");
 
     private static final BedrockPlatform[] VALUES = values();
 
