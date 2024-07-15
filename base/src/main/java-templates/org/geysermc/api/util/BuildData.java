@@ -25,7 +25,10 @@
 
 package org.geysermc.api.util;
 
-// This constant is replaced before compilation
+/**
+ * Not a public API. For internal use only. May change without notice.
+ * This class is processed before compilation to insert build properties.
+ */
 public class BuildData {
     public static final String VERSION = "{{ version }}";
 }
