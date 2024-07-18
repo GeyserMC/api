@@ -14,17 +14,6 @@ public class ApiVersion {
         this.minor = minor;
     }
 
-    public ApiVersion(String version) {
-        String[] parts = version.split("\\.");
-        if (parts.length != 3) {
-            throw new IllegalArgumentException("Invalid api version: " + version);
-        }
-
-        this.human = Integer.parseInt(parts[0]);
-        this.major = Integer.parseInt(parts[1]);
-        this.minor = Integer.parseInt(parts[2]);
-    }
-
     /**
      * Returns the human version of the api.
      */
