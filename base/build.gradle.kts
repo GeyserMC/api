@@ -1,6 +1,6 @@
 plugins {
     idea
-    alias(libs.plugins.blossom) apply true
+    alias(libs.plugins.blossom)
 }
 
 dependencies {
@@ -12,7 +12,7 @@ dependencies {
     }
 }
 
-version = property("baseApiVersion")!!
+version = property("version")!!
 val apiVersion = (version as String).removeSuffix("-SNAPSHOT")
 
 sourceSets {
