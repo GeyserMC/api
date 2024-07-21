@@ -1,0 +1,65 @@
+name: Build
+
+on:
+  workflow_dispatch:
+  push:
+    paths-ignore:
+      - '.idea/copyright/*.xml'
+      - '.gitignore'
+      - 'LICENSE'
+      - 'README.md'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get Release Info
+        id: release-info
+        uses: GeyserMC/actions/previous-release@feature/globs
+        with:
+          data: ${{ vars.RELEASEACTION_PREVRELEASE }}
+
+      - name: Setup Gradle
+        uses: GeyserMC/actions/setup-gradle-composite@master
+        with:
+          setup-java_java-version: 17
+
+      - name: Build Base API
+        run: ./gradlew build
+
+      - name: Publish to Maven Repository
+        if: ${{ success() && github.repository == 'GeyserMC/api' && github.ref_name == 'master' }}
+        run: ./gradlew publish
+        env:
+          ORG_GRADLE_PROJECT_geysermcUsername: ${{ vars.DEPLOY_USER }}
+          ORG_GRADLE_PROJECT_geysermcPassword: ${{ secrets.DEPLOY_PASS }}
+
+      - name: Get Version
+        if: ${{ (success() || failure()) && github.repository == 'GeyserMC/api' }}
+        id: get-version
+        run: |
+          version=$(cat gradle.properties | grep -o "version=[0-9\\.]*" | cut -d"=" -f2)
+          echo "VERSION=${version}" >> $GITHUB_OUTPUT
+
+      - name: Get Release Metadata
+        if: ${{ (success() || failure()) && github.repository == 'GeyserMC/api' }}
+        uses: GeyserMC/actions/release@feature/globs
+        id: metadata
+        with:
+          appID: ${{ secrets.RELEASE_APP_ID }}
+          appPrivateKey: ${{ secrets.RELEASE_APP_PK }}
+          files: |
+            base-api:base/build/libs/base-*.jar
+          releaseEnabled: false
+          saveMetadata: false
+          releaseProject: 'base'
+          releaseVersion: ${{ steps.get-version.outputs.VERSION }}
+
+      - name: Notify Discord
+        if: ${{ (success() || failure()) && github.repository == 'GeyserMC/api' }}
+        uses: GeyserMC/actions/notify-discord@master
+        with:
+          discordWebhook: ${{ secrets.DISCORD_WEBHOOK }}
+          status: ${{ job.status }}
+          body: ${{ steps.metadata.outputs.body }}
+          includeDownloads: ${{ false }}
