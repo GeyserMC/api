@@ -2,8 +2,12 @@
 checkerframework = "3.19.0"
 cumulus  = "1.1.1"
 events = "1.1-SNAPSHOT"
+blossom = "2.1.0"
 
 [libraries]
 checkerQual = { group = "org.checkerframework", name = "checker-qual", version.ref = "checkerframework" }
 cumulus = { group = "org.geysermc.cumulus", name = "cumulus", version.ref = "cumulus" }
 events = { group = "org.geysermc.event", name = "events", version.ref = "events" }
+
+[plugins]
+blossom = { id = "net.kyori.blossom", version.ref = "blossom" }
