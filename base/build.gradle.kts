@@ -12,7 +12,6 @@ dependencies {
     }
 }
 
-version = property("version")!!
 val apiVersion = (version as String).removeSuffix("-SNAPSHOT")
 
 sourceSets {
