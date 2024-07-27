@@ -4,12 +4,12 @@ plugins {
 }
 
 dependencies {
-  api(libs.checker.qual)
-  api(libs.cumulus)
-  api(libs.events) {
-    exclude(group = "com.google.guava", module = "guava")
-    exclude(group = "org.lanternpowered", module = "lmbda")
-  }
+    api(libs.checker.qual)
+    api(libs.cumulus)
+    api(libs.events) {
+        exclude(group = "com.google.guava", module = "guava")
+        exclude(group = "org.lanternpowered", module = "lmbda")
+    }
 }
 
 val apiVersion = (version as String).removeSuffix("-SNAPSHOT")

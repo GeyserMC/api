@@ -1,13 +1,6 @@
 name: Build
 
-on:
-  workflow_dispatch:
-  push:
-    paths-ignore:
-      - '.idea/copyright/*.xml'
-      - '.gitignore'
-      - 'LICENSE'
-      - 'README.md'
+on: [push]
 
 env:
   GRADLE_OPTS: "-Dorg.gradle.daemon=false -Dorg.gradle.caching=true -Dorg.gradle.welcome=never"
@@ -16,53 +9,32 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Get Release Info
-        id: release-info
-        uses: GeyserMC/actions/previous-release@master
+      - uses: actions/checkout@v3
         with:
-          data: ${{ vars.RELEASEACTION_PREVRELEASE }}
+          fetch-depth: 0
 
-      - name: Setup Gradle
-        uses: GeyserMC/actions/setup-gradle-composite@master
+      - uses: actions/setup-java@v3
         with:
-          setup-java_java-version: 17
+          java-version: 17
+          distribution: temurin
 
-      - name: Build Base API
-        run: ./gradlew build
+      - name: Build
+        uses: gradle/gradle-build-action@v2
+        with:
+          arguments: build
 
-      - name: Publish to Maven Repository
+      - name: Publish
+        uses: gradle/gradle-build-action@v2
         if: ${{ success() && github.repository == 'GeyserMC/api'}}
-        run: ./gradlew publish
         env:
           ORG_GRADLE_PROJECT_geysermcUsername: ${{ vars.DEPLOY_USER }}
           ORG_GRADLE_PROJECT_geysermcPassword: ${{ secrets.DEPLOY_PASS }}
-
-      - name: Get Version
-        if: ${{ (success() || failure()) && github.repository == 'GeyserMC/api' }}
-        id: get-version
-        run: |
-          version=$(cat gradle.properties | grep -o "version=[0-9\\.]*" | cut -d"=" -f2)
-          echo "VERSION=${version}" >> $GITHUB_OUTPUT
-
-      - name: Get Release Metadata
-        if: ${{ (success() || failure()) && github.repository == 'GeyserMC/api' }}
-        uses: GeyserMC/actions/release@feature/globs
-        id: metadata
         with:
-          appID: ${{ secrets.RELEASE_APP_ID }}
-          appPrivateKey: ${{ secrets.RELEASE_APP_PK }}
-          files: |
-            base-api:base/build/libs/base-*.jar
-          releaseEnabled: false
-          saveMetadata: false
-          releaseProject: 'base'
-          releaseVersion: ${{ steps.get-version.outputs.VERSION }}
+          arguments: publish
 
       - name: Notify Discord
-        if: ${{ (success() || failure()) && github.repository == 'GeyserMC/api' }}
-        uses: GeyserMC/actions/notify-discord@master
+        uses: Tim203/actions-git-discord-webhook@main
+        if: ${{ success() && github.repository == 'GeyserMC/api'}}
         with:
-          discordWebhook: ${{ secrets.DISCORD_WEBHOOK }}
+          webhook_url: ${{ secrets.DISCORD_WEBHOOK }}
           status: ${{ job.status }}
-          body: ${{ steps.metadata.outputs.body }}
-          includeDownloads: ${{ false }}

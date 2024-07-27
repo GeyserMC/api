@@ -1,11 +1,11 @@
 plugins {
-  id("api.build-logic")
+    id("api.build-logic")
 }
 
 allprojects {
-  group = "org.geysermc.api"
+    group = "org.geysermc.api"
 }
 
 subprojects {
-  apply(plugin = "api.base-conventions")
+    apply(plugin = "api.base-conventions")
 }
