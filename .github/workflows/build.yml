@@ -9,32 +9,24 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - name: Setup Gradle
+        uses: GeyserMC/actions/setup-gradle-composite@master
         with:
-          fetch-depth: 0
+          setup-java_java-version: 17
 
-      - uses: actions/setup-java@v3
-        with:
-          java-version: 17
-          distribution: temurin
+      - name: Build Base API
+        run: ./gradlew build
 
-      - name: Build
-        uses: gradle/gradle-build-action@v2
-        with:
-          arguments: build
-
-      - name: Publish
-        uses: gradle/gradle-build-action@v2
-        if: ${{ success() && github.repository == 'GeyserMC/api'}}
+      - name: Publish to Maven Repository
+        if: ${{ success() && github.repository == 'GeyserMC/api' }}
+        run: ./gradlew publish
         env:
           ORG_GRADLE_PROJECT_geysermcUsername: ${{ vars.DEPLOY_USER }}
           ORG_GRADLE_PROJECT_geysermcPassword: ${{ secrets.DEPLOY_PASS }}
-        with:
-          arguments: publish
 
       - name: Notify Discord
         uses: Tim203/actions-git-discord-webhook@main
-        if: ${{ success() && github.repository == 'GeyserMC/api'}}
+        if: ${{ (success() || failure()) && github.repository == 'GeyserMC/api'}}
         with:
           webhook_url: ${{ secrets.DISCORD_WEBHOOK }}
           status: ${{ job.status }}
