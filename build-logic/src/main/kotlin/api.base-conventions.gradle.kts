@@ -1,5 +1,7 @@
+import java.net.URI
+
 plugins {
-    `java-library`
+    java
     id("net.kyori.indra")
     id("net.kyori.indra.publishing")
     id("net.kyori.indra.git")
@@ -18,10 +20,24 @@ indra {
     configurePublications {
         artifactId = "${project.name}-api"
         if (shouldAddBranchName()) {
-          version = versionWithBranchName()
+            version = versionWithBranchName()
         }
     }
+}
 
-    publishSnapshotsTo("geysermc", "https://repo.opencollab.dev/artifactory/maven-snapshots")
-    publishReleasesTo("geysermc", "https://repo.opencollab.dev/artifactory/maven-releases")
+publishing {
+    repositories {
+        maven {
+            name = "geysermc"
+            url = URI.create(
+                when {
+                    project.version.toString().endsWith("-SNAPSHOT") ->
+                        "https://repo.opencollab.dev/maven-snapshots"
+                    else ->
+                        "https://repo.opencollab.dev/maven-releases"
+                }
+            )
+            credentials(PasswordCredentials::class.java)
+        }
+    }
 }
