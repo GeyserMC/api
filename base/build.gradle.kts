@@ -4,7 +4,7 @@ plugins {
 }
 
 dependencies {
-    api(libs.checkerQual)
+    api(libs.checker.qual)
     api(libs.cumulus)
     api(libs.events) {
         exclude(group = "com.google.guava", module = "guava")

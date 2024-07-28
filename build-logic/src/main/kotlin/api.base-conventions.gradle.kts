@@ -1,14 +1,43 @@
+import java.net.URI
+
 plugins {
-    `java-library`
+    java
+    id("net.kyori.indra")
+    id("net.kyori.indra.publishing")
+    id("net.kyori.indra.git")
 }
 
-tasks.compileJava {
-    options.encoding = Charsets.UTF_8.name()
+indra {
+    github("GeyserMC", "api") {
+        ci(true)
+    }
+    mitLicense()
+
+    javaVersions {
+        target(8)
+    }
+
+    configurePublications {
+        artifactId = "${project.name}-api"
+        if (shouldAddBranchName()) {
+            version = versionWithBranchName()
+        }
+    }
 }
 
-java {
-    sourceCompatibility = JavaVersion.VERSION_1_8
-    targetCompatibility = JavaVersion.VERSION_1_8
-
-    withSourcesJar()
+publishing {
+    repositories {
+        maven {
+            name = "geysermc"
+            url = URI.create(
+                when {
+                    project.version.toString().endsWith("-SNAPSHOT") ->
+                        "https://repo.opencollab.dev/maven-snapshots"
+                    else ->
+                        "https://repo.opencollab.dev/maven-releases"
+                }
+            )
+            credentials(PasswordCredentials::class.java)
+        }
+    }
 }
