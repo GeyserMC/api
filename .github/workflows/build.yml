@@ -40,7 +40,7 @@ jobs:
 
       - name: Get Release Metadata
         if: ${{ github.repository == 'GeyserMC/api' }}
-        uses: GeyserMC/actions/release@feature/globs
+        uses: GeyserMC/actions/release@master
         id: metadata
         with:
           appID: ${{ secrets.RELEASE_APP_ID }}
