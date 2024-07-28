@@ -31,6 +31,13 @@ jobs:
           version=$(cat build.gradle | grep -o "version '[0-9\\.]*'" | cut -d" " -f2 | sed "s/'//g")
           echo "VERSION=${version}" >> $GITHUB_OUTPUT
 
+      - name: Get Version
+        if: ${{ github.repository == 'GeyserMC/api' }}
+        id: get-version
+        run: |
+          version=$(cat gradle.properties | grep -o "version=[0-9\\.]*" | cut -d"=" -f2)
+          echo "VERSION=${version}" >> $GITHUB_OUTPUT
+
       - name: Get Release Metadata
         if: ${{ github.repository == 'GeyserMC/api' }}
         uses: GeyserMC/actions/release@feature/globs
