@@ -38,8 +38,6 @@ jobs:
         with:
           appID: ${{ secrets.RELEASE_APP_ID }}
           appPrivateKey: ${{ secrets.RELEASE_APP_PK }}
-          files: |
-            base-api:build/libs/base-*.jar
           releaseEnabled: false
           releaseProject: 'base-api'
           releaseVersion: ${{ steps.get-version.outputs.VERSION }}
