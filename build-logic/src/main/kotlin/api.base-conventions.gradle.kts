@@ -19,8 +19,7 @@ indra {
 
     configurePublications {
         artifactId = "${project.name}-api"
-        val versionString = version.replace("-SNAPSHOT", "")
-        if (shouldAddBranchName(versionString)) {
+        if (shouldAddBranchName(version)) {
             version = versionWithBranchName()
         }
     }
