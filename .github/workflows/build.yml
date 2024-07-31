@@ -9,30 +9,43 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - name: Setup Gradle
+        uses: GeyserMC/actions/setup-gradle-composite@master
         with:
-          fetch-depth: 0
+          setup-java_java-version: 17
 
-      - uses: actions/setup-java@v3
-        with:
-          java-version: 17
-          distribution: temurin
+      - name: Build Base API
+        run: ./gradlew build
 
-      - name: Build
-        uses: gradle/gradle-build-action@v2
-        with:
-          arguments: build
-
-      - name: Publish
-        uses: gradle/gradle-build-action@v2
+      - name: Publish to Maven Repository
+        if: ${{ success() && github.repository == 'GeyserMC/api' }}
+        run: ./gradlew publish
         env:
           ORG_GRADLE_PROJECT_geysermcUsername: ${{ vars.DEPLOY_USER }}
           ORG_GRADLE_PROJECT_geysermcPassword: ${{ secrets.DEPLOY_PASS }}
-        with:
-          arguments: publish
 
-      - name: Notify Discord
-        uses: Tim203/actions-git-discord-webhook@main
+      - name: Get Version
+        if: ${{ github.repository == 'GeyserMC/api' }}
+        id: get-version
+        run: |
+          version=$(cat gradle.properties | grep -o "version=[0-9\\.]*" | cut -d"=" -f2)
+          echo "VERSION=${version}" >> $GITHUB_OUTPUT
+
+      - name: Get Release Metadata
+        if: ${{ github.repository == 'GeyserMC/api' }}
+        uses: GeyserMC/actions/release@master
+        id: metadata
         with:
-          webhook_url: ${{ secrets.DISCORD_WEBHOOK }}
+          appID: ${{ secrets.RELEASE_APP_ID }}
+          appPrivateKey: ${{ secrets.RELEASE_APP_PK }}
+          releaseEnabled: false
+          releaseProject: 'base-api'
+          releaseVersion: ${{ steps.get-version.outputs.VERSION }}
+
+      - name: Notify Discords
+        if: ${{ github.repository == 'GeyserMC/api' }}
+        uses: GeyserMC/actions/notify-discord@master
+        with:
+          discordWebhook: ${{ secrets.DISCORD_WEBHOOK }}
           status: ${{ job.status }}
+          body: ${{ steps.metadata.outputs.body }}

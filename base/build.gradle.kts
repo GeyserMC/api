@@ -1,3 +1,8 @@
+plugins {
+    idea
+    alias(libs.plugins.blossom)
+}
+
 dependencies {
   api(libs.cumulus)
   api(libs.events)
@@ -6,4 +11,14 @@ dependencies {
   compileOnlyApi(libs.checker.qual)
 }
 
-version = property("baseApiVersion")!!
+val apiVersion = (version as String).removeSuffix("-SNAPSHOT")
+
+sourceSets {
+    main {
+        blossom {
+            javaSources {
+                property("version", apiVersion)
+            }
+        }
+    }
+}

@@ -2,7 +2,8 @@
 checkerframework = "3.36.0"
 cumulus  = "2.0.0-SNAPSHOT"
 events = "1.2-SNAPSHOT"
-indra = "3.1.2"
+indra = "3.0.1"
+blossom = "2.1.0"
 
 [libraries]
 checker-qual = { module = "org.checkerframework:checker-qual", version.ref = "checkerframework" }
@@ -13,3 +14,6 @@ events-ap = { module = "org.geysermc.event:ap", version.ref = "events" }
 plugin-indra = { module = "net.kyori:indra-common", version.ref = "indra" }
 plugin-indra-git = { module = "net.kyori:indra-git", version.ref = "indra" }
 plugin-indra-licenser-spotless = { module = "net.kyori:indra-licenser-spotless", version.ref = "indra" }
+
+[plugins]
+blossom = { id = "net.kyori.blossom", version.ref = "blossom" }
