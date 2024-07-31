@@ -32,7 +32,7 @@ publishing {
             name = "geysermc"
             url = URI.create(
                 when {
-                    project.version.toString().endsWith("-SNAPSHOT") ->
+                    (project.version.toString().endsWith("-SNAPSHOT") and (branchName() == "master")) ->
                         "https://repo.opencollab.dev/maven-snapshots"
                     else ->
                         "https://repo.opencollab.dev/maven-releases"
