@@ -1,5 +1,10 @@
+plugins {
+    idea
+    alias(libs.plugins.blossom)
+}
+
 dependencies {
-    api(libs.checkerQual)
+    api(libs.checker.qual)
     api(libs.cumulus)
     api(libs.events) {
         exclude(group = "com.google.guava", module = "guava")
@@ -7,4 +12,14 @@ dependencies {
     }
 }
 
-version = property("baseApiVersion")!!
+val apiVersion = (version as String).removeSuffix("-SNAPSHOT")
+
+sourceSets {
+    main {
+        blossom {
+            javaSources {
+                property("version", apiVersion)
+            }
+        }
+    }
+}

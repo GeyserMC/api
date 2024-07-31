@@ -1,5 +1,3 @@
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-
 plugins {
     `kotlin-dsl`
 }
@@ -9,11 +7,6 @@ repositories {
 }
 
 dependencies {
-    implementation("org.jfrog.buildinfo", "build-info-extractor-gradle", "4.26.1")
-}
-
-tasks.withType<KotlinCompile> {
-    kotlinOptions {
-        jvmTarget = "1.8"
-    }
+    implementation(libs.plugin.indra)
+    implementation(libs.plugin.indra.git)
 }
