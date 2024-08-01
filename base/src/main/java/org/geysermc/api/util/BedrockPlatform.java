@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021-2023 GeyserMC
+ * Copyright (c) 2021-2024 GeyserMC
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -33,18 +33,21 @@ public enum BedrockPlatform {
     OSX("macOS"),
     AMAZON("Amazon"),
     GEARVR("Gear VR"),
-    @Deprecated HOLOLENS("Hololens"),
+    @Deprecated
+    HOLOLENS("Hololens"),
     UWP("Windows"),
     WIN32("Windows x86"),
     DEDICATED("Dedicated"),
-    @Deprecated TVOS("Apple TV"),
+    @Deprecated
+    TVOS("Apple TV"),
     /**
      * This is for all PlayStation platforms not just PS4
      */
     PS4("PlayStation"),
     NX("Switch"),
     XBOX("Xbox"),
-    @Deprecated WINDOWS_PHONE("Windows Phone"),
+    @Deprecated
+    WINDOWS_PHONE("Windows Phone"),
     LINUX("Linux");
 
     private static final BedrockPlatform[] VALUES = values();
