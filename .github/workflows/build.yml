@@ -13,6 +13,7 @@ jobs:
         uses: GeyserMC/actions/setup-gradle-composite@master
         with:
           setup-java_java-version: 17
+          checkout_fetch-depth: 0
 
       - name: Build Base API
         run: ./gradlew build
