@@ -2,6 +2,7 @@ package org.geysermc.api.util;
 
 /**
  * Represents a version of an api.
+ * @since 1.0.1
  */
 public class ApiVersion {
     private final int human;
@@ -16,6 +17,7 @@ public class ApiVersion {
 
     /**
      * Returns the human version of the api.
+     * @since 1.0.1
      */
     public int human() {
         return this.human;
@@ -23,6 +25,7 @@ public class ApiVersion {
 
     /**
      * Returns the major version of the api.
+     * @since 1.0.1
      */
     public int major() {
         return this.major;
@@ -30,6 +33,7 @@ public class ApiVersion {
 
     /**
      * Returns the minor version of the api.
+     * @since 1.0.1
      */
     public int minor() {
         return this.minor;
@@ -47,6 +51,7 @@ public class ApiVersion {
      * @param major the requested major version
      * @param minor the requested minor version
      * @return a {@link Compatibility} indicating whether this version may support the requested version
+     * @since 1.0.1
      */
     public Compatibility supportsRequestedVersion(int human, int major, int minor) {
         if (human != this.human) {
@@ -65,7 +70,17 @@ public class ApiVersion {
     }
 
     /**
+     * Returns a human-readable string of the version.
+     * Example: "1.0.0"
+     * @since 1.0.2
+     */
+    public String toString() {
+        return human + "." + major + "." + minor;
+    }
+
+    /**
      * Describes compatibility between the current version of an API and a requested version
+     * @since 1.0.1
      */
     public enum Compatibility {
         COMPATIBLE("The api versions are compatible!"),

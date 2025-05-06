@@ -97,7 +97,6 @@ public interface GeyserApiBase {
      */
     boolean transfer(@NonNull UUID uuid, @NonNull String address, @IntRange(from = 0, to = 65535) int port);
 
-
     /**
      * Returns all the online connections.
      */
