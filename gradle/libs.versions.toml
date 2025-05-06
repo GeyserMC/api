@@ -1,6 +1,6 @@
 [versions]
 checkerframework = "3.19.0"
-cumulus  = "1.1.1"
+cumulus  = "1.1.2"
 events = "1.1-SNAPSHOT"
 blossom = "2.1.0"
 indra = "3.0.1"
