@@ -25,21 +25,19 @@
 
 package org.geysermc.api;
 
-import org.checkerframework.checker.nullness.qual.NonNull;
+import org.jspecify.annotations.Nullable;
 
 /**
  * General API class for Geyser.
  */
-@NonNull
 public class Geyser {
-    private static GeyserApiBase api;
+    private static @Nullable GeyserApiBase api;
 
     /**
      * Returns the base api.
      *
      * @return the base api
      */
-    @NonNull
     public static GeyserApiBase api() {
         if (api == null) {
             throw new RuntimeException("Api has not been registered yet!");
@@ -56,7 +54,7 @@ public class Geyser {
      * @return the api of the given type
      */
     @SuppressWarnings("unchecked")
-    public static <T extends GeyserApiBase> T api(@NonNull Class<T> apiClass) {
+    public static <T extends GeyserApiBase> T api(Class<T> apiClass) {
         if (apiClass.isInstance(api)) {
             return (T) api;
         }
@@ -75,7 +73,7 @@ public class Geyser {
      *
      * @param api the api
      */
-    public static void set(@NonNull GeyserApiBase api) {
+    public static void set(GeyserApiBase api) {
         if (Geyser.api != null) {
             throw new RuntimeException("Cannot redefine already registered api!");
         }

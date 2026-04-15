@@ -1,5 +1,6 @@
 [versions]
 checkerframework = "3.19.0"
+jspecify = "1.0.0"
 cumulus  = "1.1.2"
 events = "1.1-SNAPSHOT"
 blossom = "2.1.0"
@@ -7,6 +8,7 @@ indra = "3.0.1"
 
 [libraries]
 checker-qual = { group = "org.checkerframework", name = "checker-qual", version.ref = "checkerframework" }
+jspecify = { group = "org.jspecify", name = "jspecify", version.ref = "jspecify" }
 cumulus = { group = "org.geysermc.cumulus", name = "cumulus", version.ref = "cumulus" }
 events = { group = "org.geysermc.event", name = "events", version.ref = "events" }
 
