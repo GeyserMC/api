@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019-2022 GeyserMC. http://geysermc.org
+ * Copyright (c) 2019-2026 GeyserMC. http://geysermc.org
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -25,8 +25,6 @@
 
 package org.geysermc.api.util;
 
-import org.checkerframework.checker.nullness.qual.NonNull;
-
 public enum UiProfile {
     CLASSIC, POCKET;
 
@@ -38,7 +36,6 @@ public enum UiProfile {
      * @param id the UiProfile identifier
      * @return The UiProfile or {@link #CLASSIC} if the profile wasn't found
      */
-    @NonNull
     public static UiProfile fromId(int id) {
         return VALUES.length > id ? VALUES[id] : VALUES[0];
     }

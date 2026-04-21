@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019-2026 GeyserMC. http://geysermc.org
+ * Copyright (c) 2026 GeyserMC. http://geysermc.org
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,24 +23,7 @@
  * @link https://github.com/GeyserMC/Geyser
  */
 
+@NullMarked
 package org.geysermc.api.util;
 
-public enum InputMode {
-    UNKNOWN,
-    KEYBOARD_MOUSE,
-    TOUCH,
-    CONTROLLER,
-    VR;
-
-    private static final InputMode[] VALUES = values();
-
-    /**
-     * Get the InputMode from the identifier.
-     *
-     * @param id the InputMode identifier
-     * @return The InputMode or {@link #UNKNOWN} if the mode wasn't found
-     */
-    public static InputMode fromId(int id) {
-        return VALUES.length > id ? VALUES[id] : VALUES[0];
-    }
-}
+import org.jspecify.annotations.NullMarked;

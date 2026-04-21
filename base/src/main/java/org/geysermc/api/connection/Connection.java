@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019-2022 GeyserMC. http://geysermc.org
+ * Copyright (c) 2019-2026 GeyserMC. http://geysermc.org
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -26,7 +26,6 @@
 package org.geysermc.api.connection;
 
 import org.checkerframework.checker.nullness.qual.MonotonicNonNull;
-import org.checkerframework.checker.nullness.qual.NonNull;
 import org.checkerframework.common.value.qual.IntRange;
 import org.geysermc.api.util.BedrockPlatform;
 import org.geysermc.api.util.InputMode;
@@ -43,7 +42,7 @@ public interface Connection {
     /**
      * Returns the bedrock name of the connection.
      */
-    @NonNull String bedrockUsername();
+    String bedrockUsername();
 
     /**
      * Returns the java name of the connection.
@@ -60,32 +59,32 @@ public interface Connection {
     /**
      * Returns the XUID of the connection.
      */
-    @NonNull String xuid();
+    String xuid();
 
     /**
      * Returns the version of the Bedrock client.
      */
-    @NonNull String version();
+    String version();
 
     /**
      * Returns the platform that the connection is playing on.
      */
-    @NonNull BedrockPlatform platform();
+    BedrockPlatform platform();
 
     /**
      * Returns the language code of the connection.
      */
-    @NonNull String languageCode();
+    String languageCode();
 
     /**
      * Returns the User Interface Profile of the connection.
      */
-    @NonNull UiProfile uiProfile();
+    UiProfile uiProfile();
 
     /**
      * Returns the Input Mode of the Bedrock client.
      */
-    @NonNull InputMode inputMode();
+    InputMode inputMode();
 
     /**
      * Returns whether the connection is linked.
@@ -99,7 +98,7 @@ public interface Connection {
      * @param form the form to send
      * @return whether the form was successfully sent
      */
-    boolean sendForm(@NonNull Form form);
+    boolean sendForm(Form form);
 
     /**
      * Sends a form to the connection and opens it.
@@ -107,7 +106,7 @@ public interface Connection {
      * @param formBuilder the formBuilder to send
      * @return whether the form was successfully sent
      */
-    boolean sendForm(@NonNull FormBuilder<?, ?, ?> formBuilder);
+    boolean sendForm(FormBuilder<?, ?, ?> formBuilder);
 
     /**
      * Transfer the connection to a server. A Bedrock player can successfully transfer to the same server they are
@@ -117,5 +116,5 @@ public interface Connection {
      * @param port    the port of the server
      * @return true if the transfer was a success
      */
-    boolean transfer(@NonNull String address, @IntRange(from = 0, to = 65535) int port);
+    boolean transfer(String address, @IntRange(from = 0, to = 65535) int port);
 }
