@@ -8,6 +8,7 @@ dependencies {
   api(libs.events)
   annotationProcessor(libs.events.ap)
 
+  api(libs.jspecify)
   compileOnlyApi(libs.checker.qual)
 }
 

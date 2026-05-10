@@ -11,7 +11,7 @@ Romantic Versions incorporates the following version scheme: HUMAN.MAJOR.MINOR
 - The **MINOR** version represents any additional functionality added in a backward-compatible manner or fix with backward-compatible bug fixes. This could also include deprecations. Minor versions will **always** be backwards compatible with each other.
 
 ## API Versions
-As Geyser has 2 separate APIs, a core project module, and often sees changes due to both Minecraft Java and Bedrock's own updates which don't necessarily follow a specific versioning sceheme, simply using Semantic Versioning is unrealistic.
+As Geyser has 2 separate APIs, a core project module, and often sees changes due to both Minecraft Java and Bedrock's own updates which don't necessarily follow a specific versioning scheme, simply using Semantic Versioning is unrealistic.
 
 To dig a bit deeper into the APIs Geyser has:
 - **Base API** is an API that is shaded into both Geyser and Floodgate. It is a shared API that developers can use when they want to create a Geyser project that may only have access to one or the other

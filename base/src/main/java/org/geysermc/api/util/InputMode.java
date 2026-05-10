@@ -1,11 +1,9 @@
 /*
- * Copyright (c) 2021-2024 GeyserMC
+ * Copyright (c) 2021-2026 GeyserMC
  * Licensed under the MIT license
  * @link https://github.com/GeyserMC/api
  */
 package org.geysermc.api.util;
-
-import org.checkerframework.checker.nullness.qual.NonNull;
 
 public enum InputMode {
     UNKNOWN,
@@ -22,7 +20,7 @@ public enum InputMode {
      * @param id the InputMode identifier
      * @return The InputMode or {@link #UNKNOWN} if the mode wasn't found
      */
-    public static @NonNull InputMode fromId(int id) {
+    public static InputMode fromId(int id) {
         return VALUES.length > id ? VALUES[id] : VALUES[0];
     }
 }

@@ -1,13 +1,15 @@
 [versions]
 checkerframework = "3.36.0"
 cumulus  = "2.0.0-SNAPSHOT"
+jspecify = "1.0.0"
 events = "1.2-SNAPSHOT"
-indra = "3.0.1"
 blossom = "2.1.0"
+indra = "3.0.1"
 
 [libraries]
 checker-qual = { module = "org.checkerframework:checker-qual", version.ref = "checkerframework" }
 cumulus = { module = "org.geysermc.cumulus:cumulus", version.ref = "cumulus" }
+jspecify = { module = "org.jspecify:jspecify", version.ref = "jspecify" }
 events = { module = "org.geysermc.event:events", version.ref = "events" }
 events-ap = { module = "org.geysermc.event:ap", version.ref = "events" }
 

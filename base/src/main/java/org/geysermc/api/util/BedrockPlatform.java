@@ -1,11 +1,9 @@
 /*
- * Copyright (c) 2021-2024 GeyserMC
+ * Copyright (c) 2021-2026 GeyserMC
  * Licensed under the MIT license
  * @link https://github.com/GeyserMC/api
  */
 package org.geysermc.api.util;
-
-import org.checkerframework.checker.nullness.qual.NonNull;
 
 public enum BedrockPlatform {
     UNKNOWN("Unknown"),
@@ -45,7 +43,7 @@ public enum BedrockPlatform {
      * @param id the BedrockPlatform identifier
      * @return The BedrockPlatform or {@link #UNKNOWN} if the platform wasn't found
      */
-    public static @NonNull BedrockPlatform fromId(int id) {
+    public static BedrockPlatform fromId(int id) {
         return id < VALUES.length ? VALUES[id] : VALUES[0];
     }
 
