@@ -4,7 +4,7 @@ cumulus  = "2.0.0-SNAPSHOT"
 jspecify = "1.0.0"
 events = "1.2-SNAPSHOT"
 blossom = "2.1.0"
-indra = "3.0.1"
+indra = "4.0.0"
 
 [libraries]
 checker-qual = { module = "org.checkerframework:checker-qual", version.ref = "checkerframework" }
